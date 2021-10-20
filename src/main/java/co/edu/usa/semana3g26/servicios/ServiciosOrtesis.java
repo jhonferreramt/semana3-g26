@@ -60,8 +60,8 @@ public class ServiciosOrtesis {
                 if(ortesis.getDescription()!=null){
                     e.get().setDescription(ortesis.getDescription());
                 }
-                if(ortesis.getCategoria()!=null){
-                    e.get().setCategory((Categoria) ortesis.getCategoria());
+                if(ortesis.getCategory()!=null){
+                    e.get().setCategory((Categoria) ortesis.getCategory());
                 }
                 metodosCrud.save(e.get());
                 return e.get();
