@@ -13,64 +13,47 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
+ * Clase Service ServiciosReservaciones
  *
- * @author HeerJHobby
+ * @version 1.2
+ * @author Jhoan Villa G26 C3
  */
 @Service
 public class ServiciosReservaciones {
-     @Autowired
-    private RepositorioReservaciones metodosCrud;
 
-    public List<Reservaciones> getAll(){
-        return metodosCrud.getAll();
+    /**
+     * Variable que representa la clase Repository de la reservación
+     */
+    @Autowired
+    private RepositorioReservaciones reservation_repository;
+
+    /**
+     * Método para obtener el listado de reservaciones existentes
+     *
+     * @return listado de reservaciones
+     */
+    public List<Reservaciones> getAll() {
+        return reservation_repository.getAll();
     }
 
-    public Optional<Reservaciones> getReservation(int reservationId) {
-        return metodosCrud.getReservation(reservationId);
+    /**
+     * Método para obtener una reservación específica por el identificador
+     *
+     * @param id identificador de la reservación
+     * @return reservación
+     */
+    public Reservaciones getById(int id) {
+        Optional<Reservaciones> reservation = reservation_repository.getById(id);
+        return reservation.orElse(new Reservaciones());
     }
 
-    public Reservaciones save(Reservaciones reservation){
-        if(reservation.getIdReservation()==null){
-            return metodosCrud.save(reservation);
-        }else{
-            Optional<Reservaciones> e= metodosCrud.getReservation(reservation.getIdReservation());
-            if(e.isPresent()){
-                return metodosCrud.save(reservation);
-            }else{
-                return reservation;
-            }
-        }
-    }
-
-    public Reservaciones update(Reservaciones reservation){
-        if(reservation.getIdReservation()!=null){
-            Optional<Reservaciones> e= metodosCrud.getReservation(reservation.getIdReservation());
-            if(!e.isPresent()){
-
-                if(reservation.getStartDate()!=null){
-                    e.get().setStartDate(reservation.getStartDate());
-                }
-                if(reservation.getDevolutionDate()!=null){
-                    e.get().setDevolutionDate(reservation.getDevolutionDate());
-                }
-                if(reservation.getStatus()!=null){
-                    e.get().setStatus(reservation.getStatus());
-                }
-                metodosCrud.save(e.get());
-                return e.get();
-            }else{
-                return reservation;
-            }
-        }else{
-            return reservation;
-        }
-    }
-
-    public boolean deleteReservation(int reservationId) {
-        Boolean aBoolean = getReservation(reservationId).map(reservation -> {
-            metodosCrud.delete(reservation);
-            return true;
-        }).orElse(false);
-        return aBoolean;
+    /**
+     * Método para crear y/o actualizar una reservación
+     *
+     * @param reservation datos de la reservación a crear y/o actualizar
+     * @return reservación
+     */
+    public Reservaciones save(Reservaciones reservation) {
+        return reservation_repository.save(reservation);
     }
 }

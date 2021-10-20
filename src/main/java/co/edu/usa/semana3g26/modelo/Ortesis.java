@@ -24,8 +24,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "ortesis")
-public class Ortesis implements Serializable{
-    
+public class Ortesis implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -33,18 +33,18 @@ public class Ortesis implements Serializable{
     private String brand;
     private Integer year;
     private String description;
-    
+
     @ManyToOne
     @JoinColumn(name = "categoryId")
-    @JsonIgnoreProperties("orteiss")
+    @JsonIgnoreProperties("ortopedics")
     private Categoria category;
 
-     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "ortesis")
-    @JsonIgnoreProperties({"ortesis", "client"})
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "ortopedic")
+    @JsonIgnoreProperties({"ortopedic", "client"})
     private List<Mensajes> messages;
 
-    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "ortesis")
-    @JsonIgnoreProperties({"ortesis", "client"})
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "ortopedic")
+    @JsonIgnoreProperties({"ortopedic", "client"})
     private List<Reservaciones> reservations;
 
     public Integer getId() {
@@ -110,14 +110,4 @@ public class Ortesis implements Serializable{
     public void setReservations(List<Reservaciones> reservations) {
         this.reservations = reservations;
     }
-
-    public Object getCategoria() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
-    
-    
-    
-    
 }

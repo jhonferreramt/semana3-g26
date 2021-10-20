@@ -5,15 +5,15 @@
  */
 package co.edu.usa.semana3g26.repositorios.crud;
 
-import co.edu.usa.semana3g26.modelo.Reservaciones;
+import co.edu.usa.semana3g26.modelo.Administrativo;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- * Interfaz Repository InterfaceReservaciones
+ * Interfaz Repository InterfaceAdministrativo
  *
- * @version 1.2
+ * @version 1.0
  * @author Jhoan Villa G26 C3
  */
-public interface InterfaceReservaciones extends CrudRepository<Reservaciones, Integer> {
+public interface InterfaceAdministrativo extends CrudRepository<Administrativo, Integer> {
 
 }

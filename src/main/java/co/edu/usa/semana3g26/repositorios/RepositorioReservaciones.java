@@ -13,24 +13,55 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
+ * Clase Repository RepositorioReservaciones
  *
- * @author HeerJHobby
+ * @version 1.2
+ * @author Jhoan Villa G26 C3
  */
 @Repository
 public class RepositorioReservaciones {
-       @Autowired
-    private InterfaceReservaciones crud4;
 
-    public List<Reservaciones> getAll(){
-        return (List<Reservaciones>) crud4.findAll();
+    /**
+     * Variable que representa la interfaz CrudRepository de la reservación
+     */
+    @Autowired
+    private InterfaceReservaciones crud_repository;
+
+    /**
+     * Método para obtener el listado de reservaciones existentes
+     *
+     * @return listado de reservaciones
+     */
+    public List<Reservaciones> getAll() {
+        return (List<Reservaciones>) crud_repository.findAll();
     }
-    public Optional<Reservaciones> getReservation(int id){
-        return crud4.findById(id);
+
+    /**
+     * Método para obtener una reservación específica por el identificador
+     *
+     * @param id identificador de la reservación
+     * @return reservación
+     */
+    public Optional<Reservaciones> getById(int id) {
+        return crud_repository.findById(id);
     }
-    public Reservaciones save(Reservaciones reservation){
-        return crud4.save(reservation);
+
+    /**
+     * Método para crear y/o actualizar una reservación
+     *
+     * @param reservaciones datos de la reservación a crear y/o actualizar
+     * @return reservación
+     */
+    public Reservaciones save(Reservaciones reservaciones) {
+        return crud_repository.save(reservaciones);
     }
-    public void delete(Reservaciones reservation){
-        crud4.delete(reservation);
+
+    /**
+     * Método para eliminar una reservación
+     *
+     * @param reservaciones datos de la reservación a eliminar
+     */
+    public void delete(Reservaciones reservaciones) {
+        crud_repository.delete(reservaciones);
     }
 }

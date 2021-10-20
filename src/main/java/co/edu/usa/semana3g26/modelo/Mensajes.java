@@ -22,18 +22,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "message")
 public class Mensajes implements Serializable {
-      @Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMessage;
     private String messageText;
-    
-    @ManyToOne
-    @JoinColumn(name="id")
-    @JsonIgnoreProperties({"messages", "client", "reservations"})
-    private Ortesis ortesis;
 
     @ManyToOne
-    @JoinColumn(name="clientId")
+    @JoinColumn(name = "orthesis_id", nullable = false)
+    @JsonIgnoreProperties({"messages", "client", "reservations"})
+    private Ortesis ortopedic;
+
+    @ManyToOne
+    @JoinColumn(name = "clientId", nullable = false)
     @JsonIgnoreProperties({"messages", "reservations", "client"})
     private Cliente client;
 
@@ -53,12 +54,12 @@ public class Mensajes implements Serializable {
         this.messageText = messageText;
     }
 
-    public Ortesis getOrtesis() {
-        return ortesis;
+    public Ortesis getOrtopedic() {
+        return ortopedic;
     }
 
-    public void setOrtesis(Ortesis ortesis) {
-        this.ortesis = ortesis;
+    public void setOrtopedic(Ortesis ortopedic) {
+        this.ortopedic = ortopedic;
     }
 
     public Cliente getClient() {
@@ -68,7 +69,4 @@ public class Mensajes implements Serializable {
     public void setClient(Cliente client) {
         this.client = client;
     }
-    
-    
-    
 }

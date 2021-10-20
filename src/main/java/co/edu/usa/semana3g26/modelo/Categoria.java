@@ -23,15 +23,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "category")
 public class Categoria implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String description;
-    
-    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="category")
+
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "category")
     @JsonIgnoreProperties("category")
-    private List<Ortesis> ortesis;
+    private List<Ortesis> ortopedics;
 
     public Integer getId() {
         return id;
@@ -57,13 +58,12 @@ public class Categoria implements Serializable {
         this.description = description;
     }
 
-    public List<Ortesis> getOrtesis() {
-        return ortesis;
+    public List<Ortesis> getOrtopedics() {
+        return ortopedics;
     }
 
-    public void setBikes(List<Ortesis> ortesis) {
-        this.ortesis = ortesis;
+    public void setOrtopedics(List<Ortesis> ortopedics) {
+        this.ortopedics = ortopedics;
     }
-    
-   
+
 }

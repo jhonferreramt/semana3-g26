@@ -5,8 +5,8 @@
  */
 package co.edu.usa.semana3g26.Controladores;
 
-import co.edu.usa.semana3g26.modelo.Reservaciones;
-import co.edu.usa.semana3g26.servicios.ServiciosReservaciones;
+import co.edu.usa.semana3g26.modelo.Calificacion;
+import co.edu.usa.semana3g26.servicios.ServiciosCalificacion;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,52 +21,54 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Clase Controller ControladorReservaciones
+ * Clase Controller ControladorCalificacion
  *
- * @version 1.2
+ * @version 1.0
  * @author Jhoan Villa G26 C3
  */
 @RestController
-@RequestMapping("api/Reservation")
+@RequestMapping("api/Score")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-public class ControladorReservaciones {
+
+public class ControladorCalificacion {
 
     /**
-     * Variable que representa el servicio de la reservación
+     * Variable que representa el servicio del puntaje de la reservación
      */
     @Autowired
-    private ServiciosReservaciones reservation_service;
+    private ServiciosCalificacion score_service;
 
     /**
-     * Método para obtener el listado de reservaciones existentes
+     * Método para obtener el listado puntajes de reservaciones existentes
      *
-     * @return listado de reservaciones en formato JSON
+     * @return listado de puntajes de reservaciones en formato JSON
      */
     @GetMapping("/all")
-    public List<Reservaciones> getAll() {
-        return (List<Reservaciones>) reservation_service.getAll();
+    public List<Calificacion> getAll() {
+        return (List<Calificacion>) score_service.getAll();
     }
 
     /**
-     * Método para obtener una reservación específica por el identificador
+     * Método para obtener un puntaje de unaa reservación específica por el
+     * identificador
      *
-     * @param id identificador de la reservación
-     * @return reservación
+     * @param id identificador del puntaje de la reservación
+     * @return puntaje de la reservación
      */
     @GetMapping("/{id}")
-    public Reservaciones getById(@PathVariable("id") int id) {
-        return reservation_service.getById(id);
+    public Calificacion getById(@PathVariable("id") int id) {
+        return score_service.getById(id);
     }
 
     /**
-     * Método para crear una reservación
+     * Método para crear un puntaje de una reservación
      *
-     * @param reservation datos de la reservación a crear en formato JSON
-     * @return reservación en formato JSON
+     * @param score datos del puntaje de la reservación a crear en formato JSON
+     * @return puntaje de la reservación en formato JSON
      */
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservaciones save(@RequestBody Reservaciones reservation) {
-        return reservation_service.save(reservation);
+    public Calificacion save(@RequestBody Calificacion score) {
+        return score_service.save(score);
     }
 }

@@ -23,22 +23,22 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "client")
 public class Cliente implements Serializable {
-    
-     @Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idClient;
     private String email;
     private String password;
     private String name;
     private Integer age;
-    
-     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="client")
-    @JsonIgnoreProperties("client")
-    public List<Mensajes>messages;
 
-    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="client")
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "client")
     @JsonIgnoreProperties("client")
-    public List<Reservaciones>reservations;
+    public List<Mensajes> messages;
+
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "client")
+    @JsonIgnoreProperties("client")
+    public List<Reservaciones> reservations;
 
     public Integer getIdClient() {
         return idClient;
@@ -95,7 +95,5 @@ public class Cliente implements Serializable {
     public void setReservations(List<Reservaciones> reservations) {
         this.reservations = reservations;
     }
-    
-    
-    
+
 }
