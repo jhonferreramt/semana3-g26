@@ -27,14 +27,14 @@ public class ServiciosOrtesis {
     }
 
     public Optional<Ortesis> getOrtesis(int ortesisId) {
-        return metodosCrud.get(ortesisId);
+        return metodosCrud.getOrtesis(ortesisId);
     }
 
     public Ortesis save(Ortesis ortesis){
         if(ortesis.getId()==null){
             return metodosCrud.save(ortesis);
         }else{
-            Optional<Ortesis> e=metodosCrud.getBike(ortesis.getId());
+            Optional<Ortesis> e=metodosCrud.getOrtesis(ortesis.getId());
             //if(e.isEmpty()){
             if(e.isPresent()){
                 return metodosCrud.save(ortesis);
@@ -46,7 +46,7 @@ public class ServiciosOrtesis {
 
     public Ortesis update(Ortesis ortesis){
         if(ortesis.getId()!=null){
-            Optional<Ortesis> e=metodosCrud.getBike(ortesis.getId());
+            Optional<Ortesis> e=metodosCrud.getOrtesis(ortesis.getId());
             if(!e.isPresent()){
                 if(ortesis.getName()!=null){
                     e.get().setName(ortesis.getName());

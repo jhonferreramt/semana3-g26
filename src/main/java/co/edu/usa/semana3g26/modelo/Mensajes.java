@@ -29,7 +29,7 @@ public class Mensajes implements Serializable {
     private String messageText;
 
     @ManyToOne
-    @JoinColumn(name = "orthesis_id", nullable = false)
+    @JoinColumn(name = "id", nullable = false)
     @JsonIgnoreProperties({"messages", "client", "reservations"})
     private Ortesis ortopedic;
 

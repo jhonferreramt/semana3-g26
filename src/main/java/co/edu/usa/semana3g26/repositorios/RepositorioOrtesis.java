@@ -20,29 +20,22 @@ import org.springframework.stereotype.Repository;
 public class RepositorioOrtesis {
     
     @Autowired
-    private InterfaceOrtesis crud;
+    private InterfaceOrtesis crud2;
 
     public List<Ortesis> getAll(){
-        return (List<Ortesis>) crud.findAll();
+        return (List<Ortesis>) crud2.findAll();
     }
 
-    public Optional<Ortesis> getBike(int id){
-        return crud.findById(id);
+    public Optional<Ortesis> getOrtesis(int id){
+        return crud2.findById(id);
     }
 
-    public Ortesis save(Ortesis ortesis){
-        return crud.save(ortesis);
+    public Ortesis save(Ortesis ortopedics){
+        return crud2.save(ortopedics);
     }
-    public void delete(Ortesis ortesis){
-        crud.delete(ortesis);
-    }
-
-    public Optional<Ortesis> getOrtesis(int ortesisId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete(Ortesis ortopedics){
+        crud2.delete(ortopedics);
     }
 
-    public Optional<Ortesis> get(int ortesisId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

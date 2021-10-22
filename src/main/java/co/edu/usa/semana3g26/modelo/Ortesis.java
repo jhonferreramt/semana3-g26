@@ -23,7 +23,7 @@ import javax.persistence.Table;
  * @author HeerJHobby
  */
 @Entity
-@Table(name = "ortesis")
+@Table(name = "ortopedics")
 public class Ortesis implements Serializable {
 
     @Id

@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author HeerJHobby
  */
 @RestController
-@RequestMapping("/api/Ortesis")
+@RequestMapping("/api/Ortopedic")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 
 public class ControladorOrtesis {
