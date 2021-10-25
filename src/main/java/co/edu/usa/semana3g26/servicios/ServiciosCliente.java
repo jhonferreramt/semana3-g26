@@ -13,22 +13,44 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
+ * Clase Service ServiciosCliente
  *
- * @author HeerJHobby
+ * @version 1.2
+ * @author Lorena Nossa G26 C3
  */
 @Service
 public class ServiciosCliente {
+    /**
+     * Variable que representa la clase Repository del Cliente
+     */
        @Autowired
      private RepositorioCliente metodosCrud;
      
+     /**
+     * Método para obtener el listado de reservaciones cliente
+     *
+     * @return listado de cliente
+     */
      public List<Cliente> getAll(){
         return metodosCrud.getAll();
     }
      
+    /**
+     * Método para obtener un cliente específica por el identificador
+     *
+     * @param clientId identificador del cliente
+     * @return clienteId
+     */
       public Optional<Cliente> getClient(int clientId) {
         return metodosCrud.getCliente(clientId);
     }
-
+      
+         /**
+     * Método para crear y/o actualizar un cliente
+     *
+     * @param client datos de la reservación a crear y/o actualizar
+     * @return client
+     */
     public Cliente save(Cliente client){
         if(client.getIdClient()==null){
             return metodosCrud.save(client);
@@ -42,6 +64,12 @@ public class ServiciosCliente {
         }
     }
 
+       /**
+     * Método para actualizar una reservación
+     *
+     * @param client datos del client actualizar
+     * @return reservación
+     */
     public Cliente update(Cliente client){
         if(client.getIdClient()!=null){
             Optional<Cliente> e= metodosCrud.getCliente(client.getIdClient());
@@ -65,6 +93,12 @@ public class ServiciosCliente {
         }
     }
 
+       /**
+     * Método para borrar un cliente
+     *
+     * @param clientId datos de la reservación a crear y/o actualizar
+     * @return reservación
+     */
     public boolean deleteClient(int clientId) {
         Boolean aBoolean = getClient(clientId).map(client -> {
             metodosCrud.delete(client);

@@ -9,8 +9,10 @@ import co.edu.usa.semana3g26.modelo.Cliente;
 import org.springframework.data.repository.CrudRepository;
 
 /**
+ * Interfaz Repository InterfaceCliente
  *
- * @author HeerJHobby
+ * @version 1.2
+ * @author Lorena Nossa G26 C3
  */
 public interface InterfaceCliente extends CrudRepository<Cliente,Integer> {
     
