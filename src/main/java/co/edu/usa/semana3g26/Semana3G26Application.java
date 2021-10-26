@@ -1,5 +1,24 @@
-package co.edu.usa.semana3g26;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
+// Paquetes por construir dentro del proyecto para contener las Entidades y demas
+// 1.Modelo o Entidad
+// 2.Interface
+// 3.Repositorio
+// 4.Servicios
+// 5.Controlador o Web
+
+package co.edu.usa.semana3g26;
+/**
+ * Version 1.0
+ * Clase Principal Proyecto Retos 
+ * Grupo G26
+ * @author Equipo Scrum dirigido por ScrumMaster Carlos Tello
+ * Jhoan Villa - Jhon Herrera- Isaias Perez- Lorena Nossa - Jean James
+ */
 import co.edu.usa.semana3g26.modelo.Categoria;
 import co.edu.usa.semana3g26.modelo.Cliente;
 import co.edu.usa.semana3g26.modelo.Mensajes;
@@ -44,7 +63,11 @@ public class Semana3G26Application {
     public static void main(String[] args) {
         SpringApplication.run(Semana3G26Application.class, args);
     }
-
+    /**
+     * Método que obtiene todos los listados de las entidades 
+     * consultadas 
+     * @return Listados
+     */
     @Bean
     ApplicationRunner applicationRunner() {
         return args -> {
@@ -73,8 +96,3 @@ public class Semana3G26Application {
 
 }
 
-// 1.Modelo o Entidad
-// 2.Interface
-// 3.Repositorio
-// 4.Servicios
-// 5.Controlador o Web

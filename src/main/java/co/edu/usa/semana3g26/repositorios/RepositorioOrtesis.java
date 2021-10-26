@@ -13,29 +13,56 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
- *
- * @author HeerJHobby
+ * Claase Repositorio para Ortesis
+ * Version 1.0
+ * @author Jhon Ferney Herrera 
+ * Grupo G-26
  */
 @Repository
 public class RepositorioOrtesis {
-    
+
+    /**
+     * Variable Crud Repository de clase Ortesis
+     */
     @Autowired
     private InterfaceOrtesis crud2;
 
-    public List<Ortesis> getAll(){
+    /**
+     * Método que obtiene listado de Ortesis
+     *
+     * @return listado ortesis
+     */
+    public List<Ortesis> getAll() {
         return (List<Ortesis>) crud2.findAll();
     }
 
-    public Optional<Ortesis> getOrtesis(int id){
+    /**
+     * Método que obtiene una ortesis por su identificador
+     *
+     * @param id de ortesis
+     * @return envio consulta por id a RepositorioCrud2
+     */
+    public Optional<Ortesis> getOrtesis(int id) {
         return crud2.findById(id);
     }
 
-    public Ortesis save(Ortesis ortopedics){
+    /**
+     * Método para actualizar o Guardar ortesis
+     *
+     * @param ortopedics
+     * @return listado ortesis
+     */
+    public Ortesis save(Ortesis ortopedics) {
         return crud2.save(ortopedics);
     }
-    public void delete(Ortesis ortopedics){
+
+    /**
+     * Método para borrar ortesis
+     *
+     * @param ortopedics
+     */
+    public void delete(Ortesis ortopedics) {
         crud2.delete(ortopedics);
     }
 
-    
 }

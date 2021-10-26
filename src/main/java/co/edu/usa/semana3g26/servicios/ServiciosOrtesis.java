@@ -14,67 +14,99 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
+ * version 1.0 Claase Servicios para Ortesis
  *
- * @author HeerJHobby
+ * @author Jhon Ferney Herrera Grupo G-26
  */
 @Service
 public class ServiciosOrtesis {
-     @Autowired
+    /**
+    * Variable que envia datos a repositorioCrud Ortesis
+    */
+    @Autowired
     private RepositorioOrtesis metodosCrud;
 
-    public List<Ortesis> getAll(){
+    /**
+     * Método para obtener lista de Ortesis
+     *
+     * @return listado obtenido
+     */
+    public List<Ortesis> getAll() {
         return metodosCrud.getAll();
     }
 
+    /**
+     * Método para obtener Ortesis por id
+     *
+     * @param ortesisId
+     * @return ortesis obtenida
+     */
     public Optional<Ortesis> getOrtesis(int ortesisId) {
         return metodosCrud.getOrtesis(ortesisId);
     }
 
-    public Ortesis save(Ortesis ortesis){
-        if(ortesis.getId()==null){
+    /**
+     * Método para guardar ortesis
+     *
+     * @param ortesis
+     * @return listado obtenido
+     */
+    public Ortesis save(Ortesis ortesis) {
+        if (ortesis.getId() == null) {
             return metodosCrud.save(ortesis);
-        }else{
-            Optional<Ortesis> e=metodosCrud.getOrtesis(ortesis.getId());
-            //if(e.isEmpty()){
-            if(e.isPresent()){
+        } else {
+            Optional<Ortesis> e = metodosCrud.getOrtesis(ortesis.getId());
+
+            if (e.isPresent()) {
                 return metodosCrud.save(ortesis);
-            }else{
+            } else {
                 return ortesis;
             }
         }
     }
 
-    public Ortesis update(Ortesis ortesis){
-        if(ortesis.getId()!=null){
-            Optional<Ortesis> e=metodosCrud.getOrtesis(ortesis.getId());
-            if(!e.isPresent()){
-                if(ortesis.getName()!=null){
+    /**
+     * Método optional que valida la informcion traida para actualizar
+     *
+     * @param ortesis
+     * @return listado obtenido
+     */
+    public Ortesis update(Ortesis ortesis) {
+        if (ortesis.getId() != null) {
+            Optional<Ortesis> e = metodosCrud.getOrtesis(ortesis.getId());
+            if (!e.isPresent()) {
+                if (ortesis.getName() != null) {
                     e.get().setName(ortesis.getName());
                 }
-                if(ortesis.getBrand()!=null){
+                if (ortesis.getBrand() != null) {
                     e.get().setBrand(ortesis.getBrand());
                 }
-                if(ortesis.getYear()!=null){
+                if (ortesis.getYear() != null) {
                     e.get().setYear(ortesis.getYear());
                 }
-                if(ortesis.getDescription()!=null){
+                if (ortesis.getDescription() != null) {
                     e.get().setDescription(ortesis.getDescription());
                 }
-                if(ortesis.getCategory()!=null){
+                if (ortesis.getCategory() != null) {
                     e.get().setCategory((Categoria) ortesis.getCategory());
                 }
                 metodosCrud.save(e.get());
                 return e.get();
-            }else{
+            } else {
                 return ortesis;
             }
-        }else{
+        } else {
             return ortesis;
         }
     }
 
-
-    public boolean deleteBike(int ortesisId) {
+    /**
+     * Método para eliminar una Ortesis
+     *
+     * @param ortesisId
+     * @return listado obtenido
+     */
+    public boolean deleteOrtesis(int ortesisId) {
         Boolean aBoolean = getOrtesis(ortesisId).map(ortesis -> {
             metodosCrud.delete(ortesis);
             return true;

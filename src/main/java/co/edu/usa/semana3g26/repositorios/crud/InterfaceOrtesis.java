@@ -5,14 +5,15 @@
  */
 package co.edu.usa.semana3g26.repositorios.crud;
 
-
 import co.edu.usa.semana3g26.modelo.Ortesis;
 import org.springframework.data.repository.CrudRepository;
 
 /**
+ * version 1.0 Claase Interface para Ortesis
  *
- * @author HeerJHobby
+ * @author Jhon Ferney Herrera 
+ * Grupo G-26
  */
-public interface InterfaceOrtesis extends CrudRepository<Ortesis,Integer> {
+public interface InterfaceOrtesis extends CrudRepository<Ortesis, Integer> {
 
 }
