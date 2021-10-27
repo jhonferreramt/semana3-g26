@@ -24,37 +24,68 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
- * @author HeerJHobby
+ * version 1.0 
+ * Claase Controlador para Categoria Ruta general api
+ * @author Isaias Perez Ramirez
+ * Grupo G-26
  */
 @RestController
 @RequestMapping("/api/Category")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 
 public class ControladorCategoria {
+    /**
+     * Variable con referencia a Servicio Categoria
+     */
       @Autowired
     private ServiciosCategoria servicio;
     @GetMapping("/all")
     public List<Categoria> getCategoria(){
         return servicio.getAll();
     }
-
+    /**
+     * Método obtener Listado Categoria
+     *
+     * @return formato JSON con datos lista Categoria
+     */
     @GetMapping("/{id}")
     public Optional<Categoria> getCategoria(@PathVariable("id") int categoriaId) {
         return servicio.getCategoria(categoriaId);
     }
-
+    
+    /**
+     * Método Guardar Categoria
+     *
+     * @param ortesis
+     * @return le retornamos a servicioCategoria el JSON para la instruccion
+     * update
+     */
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Categoria save(@RequestBody Categoria categoria) {
         return servicio.save(categoria);
     }
+    
+    /**
+     * Método Crear Categorias
+     *
+     * @param ortesis
+     * @return le retornamos a servicioCategoria el JSON para la instgruccion
+     * update
+     */
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Categoria update(@RequestBody Categoria categoria) {
         return servicio.update(categoria);
     }
 
+    /**
+     * Método Borrar Ortesis
+     *
+     * @param ortesisId
+     * @return le retornamos a servicioCategoria el JSON para la instruccion
+     * delete
+     */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int categoriaId) {

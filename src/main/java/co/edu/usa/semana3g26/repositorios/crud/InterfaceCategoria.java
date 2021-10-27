@@ -8,9 +8,12 @@ package co.edu.usa.semana3g26.repositorios.crud;
 import co.edu.usa.semana3g26.modelo.Categoria;
 import org.springframework.data.repository.CrudRepository;
 
+
 /**
+ * version 1.0 Clase Interface para Categoria
  *
- * @author HeerJHobby
+ * @author Isaias Perez Ramirez
+ * Grupo G-26
  */
 public interface InterfaceCategoria extends CrudRepository<Categoria,Integer>{
     

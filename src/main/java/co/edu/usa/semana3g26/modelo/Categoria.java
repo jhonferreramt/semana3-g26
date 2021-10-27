@@ -17,23 +17,55 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
- * @author HeerJHobby
+ * version 1.0 
+ * Clase modelo Categoria
+ * @author Isaias Perez Ramirez
+ * Grupo G-26
  */
+
+
 @Entity
 @Table(name = "category")
 public class Categoria implements Serializable {
-
+/**
+     * Parametros de clase llave primaria
+     *
+     */
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
+    /**
+     * Variable identificador Categorias
+     */
     private Integer id;
+    
+    /**
+     * Variable Nombre de la Categoria
+     */
     private String name;
+    
+    /**
+     * Variable Descripción de la Categoria
+     */
     private String description;
 
+    
+    /**
+     * Objeto ortopedics que representa lista de categorias y sus respectivas
+     * relaciones con las tablas ortopedics para creacion de JSON
+     */
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "category")
     @JsonIgnoreProperties("category")
     private List<Ortesis> ortopedics;
-
+    
+    
+/**
+     * Métodos Getter And Setter
+     *
+     *
+     * @return objetos que retornan los valores de cada metodo
+     */
     public Integer getId() {
         return id;
     }
