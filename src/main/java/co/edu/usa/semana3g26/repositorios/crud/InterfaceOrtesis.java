@@ -9,7 +9,8 @@ import co.edu.usa.semana3g26.modelo.Ortesis;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- * version 1.0 Claase Interface para Ortesis
+ * version 1.0 
+ * Claase Interface para Ortesis
  *
  * @author Jhon Ferney Herrera 
  * Grupo G-26

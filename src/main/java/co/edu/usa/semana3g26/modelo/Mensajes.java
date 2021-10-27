@@ -16,28 +16,54 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- *
- * @author HeerJHobby
+ * version 1.0 
+ * Claase Modelo para Mensajes 
+ * @author Jean James Romero Aguirre
+ * Grupo G-26
  */
+
 @Entity
 @Table(name = "message")
 public class Mensajes implements Serializable {
-
+    
+    /**
+     * Parametros de clase llave primaria
+     *
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    /**
+     * Variable identificador Mensajes
+     */
     private Integer idMessage;
     private String messageText;
 
+    /**
+     * Objeto ortopedic que representa lista de mensajes y sus respectivas
+     * relaciones con las tablas ortopedic y client para creacion de JSON
+     */
     @ManyToOne
     @JoinColumn(name = "id", nullable = false)
     @JsonIgnoreProperties({"messages", "client", "reservations"})
     private Ortesis ortopedic;
 
+    /**
+     * Objeto client que representa lista de Reservaciones y sus
+     * respectivas relaciones con las tablas ortopedic y client para creacion de
+     * JSON
+     */
     @ManyToOne
     @JoinColumn(name = "clientId", nullable = false)
     @JsonIgnoreProperties({"messages", "reservations", "client"})
     private Cliente client;
 
+    
+    /**
+     * Métodos Getter And Setter
+     *
+     *
+     * @return objetos que retornan los valores de cada metodo
+     */
     public Integer getIdMessage() {
         return idMessage;
     }

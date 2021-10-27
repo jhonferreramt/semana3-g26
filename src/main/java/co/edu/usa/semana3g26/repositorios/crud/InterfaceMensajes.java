@@ -9,8 +9,10 @@ import co.edu.usa.semana3g26.modelo.Mensajes;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
- * @author HeerJHobby
+ * version 1.0 
+ * Claase Interface para Mensajes 
+ * @author Jean James Romero Aguirre
+ * Grupo G-26
  */
 public interface InterfaceMensajes extends CrudRepository<Mensajes,Integer>{
     
