@@ -6,6 +6,7 @@
 package co.edu.usa.semana3g26.modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,12 +19,12 @@ import javax.persistence.Table;
 /**
  * Clase Calificacion
  *
- * @version 1.0
+ * @version 1.1
  * @author Jhoan Villa G26 C3
  */
 @Entity
 @Table(name = "score")
-public class Calificacion {
+public class Calificacion implements Serializable {
 
     /**
      * Variable que representa el identificador del puntaje de la reservación y
