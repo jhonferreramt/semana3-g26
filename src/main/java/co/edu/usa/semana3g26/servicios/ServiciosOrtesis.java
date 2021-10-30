@@ -74,7 +74,7 @@ public class ServiciosOrtesis {
     public Ortesis update(Ortesis ortesis) {
         if (ortesis.getId() != null) {
             Optional<Ortesis> e = metodosCrud.getOrtesis(ortesis.getId());
-            if (!e.isPresent()) {
+            if (e.isPresent()) {
                 if (ortesis.getName() != null) {
                     e.get().setName(ortesis.getName());
                 }
