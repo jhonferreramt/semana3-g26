@@ -74,7 +74,7 @@ public class ServiciosCategoria {
     public Categoria update(Categoria categoria){
         if(categoria.getId()!=null){
             Optional<Categoria>g=metodosCrud.getCategoria(categoria.getId());
-            if(!g.isPresent()){
+            if(g.isPresent()){
                 if(categoria.getDescription()!=null){
                     g.get().setDescription(categoria.getDescription());
                 }

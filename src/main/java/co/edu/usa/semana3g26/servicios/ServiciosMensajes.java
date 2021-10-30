@@ -75,7 +75,7 @@ public class ServiciosMensajes {
     public Mensajes update(Mensajes message){
         if(message.getIdMessage()!=null){
             Optional<Mensajes> e= metodosCrud.getMessage(message.getIdMessage());
-            if(!e.isPresent()){
+            if(e.isPresent()){
                 if(message.getMessageText()!=null){
                     e.get().setMessageText(message.getMessageText());
                 }
