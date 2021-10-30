@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Programa de alquiler</title>
+    <link rel="shortcut icon" href="../img/icono.png">    
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../css/bootstrap-responsive.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" media="all">  
+    <script src="../js/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script src="../js/bootstrap.js" type="text/javascript"></script> 
+    <script src="../js/bootstrap.min.js" type="text/javascript"></script> 
+    <script src="../js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="../js/client/guardar.js" type="text/javascript"></script>
+    <script src="../js/client/mostrar_clave.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <header class="p-3 mb-3 border-bottom">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a href="../index.html" class="navbar-brand d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+          <img width="40" height="32" role="img" aria-label="logo" src="../img/icono.png"></img>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Inicio</a>
+            </li>
+            <li class="authenticated nav-item dropdown">
+              <a class="nav-link dropdown-item" href="../admin/index.html" id="navbarDropdown3" role="button" aria-haspopup="true" aria-expanded="false">
+                  Administradores
+              </a>
+            </li>
+            <li class="authenticated nav-item dropdown">
+              <a class="nav-link dropdown-item" href="../category/index.html" id="navbarDropdown6" role="button" aria-haspopup="true" aria-expanded="false">
+                Categorias
+              </a>
+            </li>
+            <li class="authenticated nav-item dropdown">
+              <a class="nav-link dropdown-item" href="../orthesis/index.html" id="navbarDropdown6" role="button" aria-haspopup="true" aria-expanded="false">
+                Órtesis
+              </a>
+            </li>
+            <li class="authenticated nav-item dropdown active">
+              <a class="nav-link dropdown-item" href="../client/index.html" id="navbarDropdown6" role="button" aria-haspopup="true" aria-expanded="false">
+                Clientes<span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="authenticated nav-item dropdown">
+              <a class="nav-link dropdown-item" href="../message/index.html" id="navbarDropdown6" role="button" aria-haspopup="true" aria-expanded="false">
+                Mensajes
+              </a>
+            </li>
+            <li class="authenticated nav-item dropdown">
+              <a class="nav-link dropdown-item" href="../reservation/index.html" id="navbarDropdown6" role="button" aria-haspopup="true" aria-expanded="false">
+                Reservas
+              </a>
+            </li>
+          </ul>
+  
+          <ul class="navbar-nav px-3">
+            <li class="authenticated nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span id="user"></span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
+                <a class="dropdown-item" onclick="logout()">Cerrar sesión</a>
+              </div>
+            </li>          
+
+            <li class="nav-item text-nowrap unauthenticated">
+                <a class="nav-link" href="../oauth2/authorization/github">Iniciar sesión</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container authenticated">
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <h3 style="text-align: center;">Cliente</h3>
+      </div>      
+      <div class="panel panel-default" style="text-align: center; width: 75%; margin: auto; padding: 20px;">
+        <div class="row">
+          <div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <input type="input" class="form-control" id="name" name="name" placeholder="Nombre" maxlength="250" required>
+          </div>
+          <div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Correo electrónico" maxlength="45" required>
+          </div>
+          <div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <input type="number" class="form-control" id="age" name="age" placeholder="Edad" min="1" max="120" required>
+          </div>
+          <div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" maxlength="45" required>
+          </div>
+          <div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <!-- checkbox que nos permite activar o desactivar la opcion -->
+            <input class="form-check-input" type="checkbox" value="" id="mostrar_contrasena" title="Clic para mostrar contraseña">
+            <label class="form-check-label" for="mostrar_contrasena">
+              &nbsp;&nbsp;Mostrar Contraseña
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <button type="submit" onclick="guardar()" class="btn btn-primary btn-block" name="registrar" style="width: 100%;">Crear cliente</button>
+          </div>            
+        </div>
+      </div>
+      <script type="text/javascript">
+        $(document).ready(function(){
+          $.ajax({
+            url: "/user",
+            type: 'GET',
+            dataType: 'json',
+              success: function(respuesta){
+                console.log("get");
+                console.log(respuesta);
+                $("#user").html(respuesta.name);
+                $(".unauthenticated").hide();
+                $(".authenticated").show();
+              },
+              error: function (xhr, status) {
+                $(".unauthenticated").show();
+                $(".authenticated").hide();
+              }
+          });
+        });
+
+        var logout = function () {
+            $.post("/logout", function () {
+                $("#user").html('');
+                $(".unauthenticated").show();
+                $(".authenticated").hide();
+            })
+            return true;
+        }
+      </script>        
+    </main>
+    <footer class="panel-heading container" style="text-align: center;">
+      <small class="d-block mb-3 text-muted">Copyright &#169; 2021</small>
+    </footer>
+  </body>
+</html>      

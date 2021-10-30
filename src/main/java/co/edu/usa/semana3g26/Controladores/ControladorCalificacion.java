@@ -11,9 +11,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,13 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Clase Controller ControladorCalificacion
  *
- * @version 1.0
+ * @version 1.1
  * @author Jhoan Villa G26 C3
  */
 @RestController
 @RequestMapping("api/Score")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-
 public class ControladorCalificacion {
 
     /**
@@ -70,5 +71,30 @@ public class ControladorCalificacion {
     @ResponseStatus(HttpStatus.CREATED)
     public Calificacion save(@RequestBody Calificacion score) {
         return score_service.save(score);
+    }
+
+    /**
+     * Método para modificar un puntaje de una reservación
+     *
+     * @param score datos del puntaje de la reservación a modificar en formato
+     * JSON
+     * @return puntaje de la reservación en formato JSON
+     */
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Calificacion update(@RequestBody Calificacion score) {
+        return score_service.update(score);
+    }
+
+    /**
+     * Método para eliminar un puntaje de una reservación
+     *
+     * @param id identificador del puntaje de la reservación a eliminar
+     * @return booleano de confirmación
+     */
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id) {
+        return score_service.delete(id);
     }
 }

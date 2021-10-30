@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Clase Repository RepositorioCalificacion
  *
- * @version 1.0
+ * @version 1.1
  * @author Jhoan Villa G26 C3
  */
 @Repository

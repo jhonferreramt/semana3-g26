@@ -11,7 +11,7 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * Interfaz Repository InterfaceCalificacion
  *
- * @version 1.0
+ * @version 1.1
  * @author Jhoan Villa G26 C3
  */
 public interface InterfaceCalificacion extends CrudRepository<Calificacion, Integer> {
