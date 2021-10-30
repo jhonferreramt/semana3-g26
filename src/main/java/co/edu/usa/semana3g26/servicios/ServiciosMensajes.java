@@ -13,22 +13,46 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
- * @author HeerJHobby
+ * version 1.0 
+ * Claase Servicios para Ortesis
+ * @author Jean James Romero Aguirre
+ * Grupo G-26
  */
+
 @Service
 public class ServiciosMensajes {
+    /**
+    * Variable que envia datos a repositorioCrud Ortesis
+    */
+    
     @Autowired
     private RepositorioMensajes metodosCrud;
-
+    
+    /**
+     * Método para obtener lista de Mensajes
+     *
+     * @return listado obtenido
+     */
     public List<Mensajes> getAll(){
         return metodosCrud.getAll();
     }
-
+    
+/**
+     * Método para obtener Mnesajes por id
+     *
+     * @param mensajesId
+     * @return mensajes obtenida
+     */
     public Optional<Mensajes> getMessage(int messageId) {
         return metodosCrud.getMessage(messageId);
     }
 
+    /**
+     * Método para guardar mensajes
+     *
+     * @param mensajes
+     * @return listado obtenido
+     */
     public Mensajes save(Mensajes message){
         if(message.getIdMessage()==null){
             return metodosCrud.save(message);
@@ -42,6 +66,12 @@ public class ServiciosMensajes {
         }
     }
 
+     /**
+     * Método optional que valida la informcion traida para actualizar
+     *
+     * @param mensajes
+     * @return listado obtenido
+     */
     public Mensajes update(Mensajes message){
         if(message.getIdMessage()!=null){
             Optional<Mensajes> e= metodosCrud.getMessage(message.getIdMessage());
@@ -59,6 +89,12 @@ public class ServiciosMensajes {
         }
     }
 
+    /**
+     * Método para eliminar un mensajes
+     *
+     * @param mensajesId
+     * @return listado obtenido
+     */
     public boolean deleteMessage(int messageId) {
         Boolean aBoolean = getMessage(messageId).map(message -> {
             metodosCrud.delete(message);

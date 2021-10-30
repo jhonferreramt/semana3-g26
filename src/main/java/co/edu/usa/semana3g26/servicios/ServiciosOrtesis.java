@@ -14,9 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * version 1.0 Claase Servicios para Ortesis
- *
- * @author Jhon Ferney Herrera Grupo G-26
+ * version 1.0 
+ * Claase Servicios para Ortesis
+ * @author Jhon Ferney Herrera 
+ * Grupo G-26
  */
 @Service
 public class ServiciosOrtesis {
