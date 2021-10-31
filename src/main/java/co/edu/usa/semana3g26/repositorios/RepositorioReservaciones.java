@@ -5,8 +5,12 @@
  */
 package co.edu.usa.semana3g26.repositorios;
 
+import co.edu.usa.semana3g26.modelo.Cliente;
 import co.edu.usa.semana3g26.modelo.Reservaciones;
+import co.edu.usa.semana3g26.modelo.personalizado.CanceladoCompletado;
+import co.edu.usa.semana3g26.modelo.personalizado.TopCliente;
 import co.edu.usa.semana3g26.repositorios.crud.InterfaceReservaciones;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +20,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Clase Repository RepositorioReservaciones
  *
- * @version 1.2
+ * @version 1.3
  * @author Jhoan Villa G26 C3
  */
 @Repository
@@ -58,6 +62,36 @@ public class RepositorioReservaciones {
      */
     public Optional<Reservaciones> getById(int id) {
         return crud_repository.findById(id);
+    }
+
+    /**
+     * Método para obtener el total de reservaciones en estado de canceladas y/o
+     * completas
+     *
+     * @return total de reservaciones en dichos estados
+     */
+    public CanceladoCompletado getCancelledCompleted() {
+        Long cancelled = crud_repository.getCancelado();
+        Long completed = crud_repository.getCompletado();
+
+        return new CanceladoCompletado(completed, cancelled);
+    }
+
+    /**
+     * Método para obtener el listado de usuarios con la cantidad reservas
+     * completas
+     *
+     * @return lista de usuarios con la cantidad reservas completas
+     */
+    public List<TopCliente> getTopClient() {
+        List<TopCliente> result = new ArrayList<>();
+        List<Object[]> report = crud_repository.getTopCliente();
+
+        for (Object[] linea : report) {
+            result.add(new TopCliente((Long) linea[1], (Cliente) linea[0]));
+        }
+
+        return result;
     }
 
     /**

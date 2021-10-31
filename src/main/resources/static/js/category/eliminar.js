@@ -7,11 +7,11 @@ function eliminar(identificador) {
             if (JSON.stringify(respuesta.ortopedics) === "[]") {
                 enviar(identificador);
             } else {
-                alert('Esta categoría tiene órtesis asociadas, no se puede eliminar');
+                mostrarMensaje('Esta categoría tiene órtesis asociadas, no se puede eliminar', 'Error');
             }
         },
         error: function (xhr, status) {
-            alert('Se ha presentado un problema al consultar el registro');
+            mostrarMensaje('Se ha presentado un problema al consultar el registro', 'Error');
         }
     });
 }
@@ -31,8 +31,10 @@ function enviar(identificador) {
         data: JSON.stringify(category),
         statusCode: {
             204: function () {
-                alert('Se ha eliminado el registro');
-                window.location = "./index.html";
+                mostrarMensaje('Se ha eliminado el registro', 'Operación exitosa');
+                setTimeout(() => {
+                    window.location = "./index.html";
+                }, 2500);
             }
         },
     });

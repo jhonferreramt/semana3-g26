@@ -16,11 +16,11 @@ function consultarById(id){
         llenarDatos(respuesta);
       }else{
         $("#modificar").hide();
-        alert('No se encuentra la categoria con el id '+id);
+        mostrarMensaje('No se encuentra la categoría con el id '+id,'Error');
       }
     },
     error: function (xhr, status) {
-      alert('Se ha presentado un problema al consultar el registro');
+      mostrarMensaje('Se ha presentado un problema al consultar el registro','Error');
     }
   });
 }

@@ -8,12 +8,13 @@ package co.edu.usa.semana3g26.repositorios.crud;
 import co.edu.usa.semana3g26.modelo.Reservaciones;
 import java.util.Date;
 import java.util.List;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 /**
  * Interfaz Repository InterfaceReservaciones
  *
- * @version 1.2
+ * @version 1.3
  * @author Jhoan Villa G26 C3
  */
 public interface InterfaceReservaciones extends CrudRepository<Reservaciones, Integer> {
@@ -29,4 +30,31 @@ public interface InterfaceReservaciones extends CrudRepository<Reservaciones, In
     public List<Reservaciones> findAllByStartDateAfterAndStartDateBefore(
             Date date_one, Date date_two);
 
+    /**
+     * Método para obtener el total de reservaciones en estado de canceladas
+     *
+     * @return total de reservaciones en dicho estado
+     */
+    @Query("SELECT COUNT(r.idReservation) FROM Reservaciones AS r WHERE "
+            + "r.status = 'cancelled'")
+    public Long getCancelado();
+
+    /**
+     * Método para obtener el total de reservaciones en estado de completas
+     *
+     * @return total de reservaciones en dicho estado
+     */
+    @Query("SELECT COUNT(r.idReservation) FROM Reservaciones AS r WHERE "
+            + "r.status = 'completed'")
+    public Long getCompletado();
+
+    /**
+     * Método para obtener el listado de usuarios con la cantidad reservas
+     * completas
+     *
+     * @return lista de usuarios con la cantidad reservas completas
+     */
+    @Query("SELECT r.client, COUNT(r.idReservation) FROM Reservaciones AS r "
+            + "GROUP BY r.client ORDER BY COUNT(r.idReservation) DESC")
+    public List<Object[]> getTopCliente();
 }

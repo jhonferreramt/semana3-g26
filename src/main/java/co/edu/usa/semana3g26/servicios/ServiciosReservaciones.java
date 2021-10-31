@@ -8,6 +8,8 @@ package co.edu.usa.semana3g26.servicios;
 import co.edu.usa.semana3g26.modelo.Cliente;
 import co.edu.usa.semana3g26.modelo.Ortesis;
 import co.edu.usa.semana3g26.modelo.Reservaciones;
+import co.edu.usa.semana3g26.modelo.personalizado.CanceladoCompletado;
+import co.edu.usa.semana3g26.modelo.personalizado.TopCliente;
 import co.edu.usa.semana3g26.repositorios.RepositorioCliente;
 import co.edu.usa.semana3g26.repositorios.RepositorioOrtesis;
 import co.edu.usa.semana3g26.repositorios.RepositorioReservaciones;
@@ -23,7 +25,7 @@ import org.springframework.stereotype.Service;
 /**
  * Clase Service ServiciosReservaciones
  *
- * @version 1.2
+ * @version 1.3
  * @author Jhoan Villa G26 C3
  */
 @Service
@@ -142,6 +144,26 @@ public class ServiciosReservaciones {
     public Reservaciones getById(int idReser) {
         Optional<Reservaciones> reservation = reservationRepo.getById(idReser);
         return reservation.orElse(new Reservaciones());
+    }
+
+    /**
+     * Método para obtener el total de reservaciones en estado de canceladas y/o
+     * completas
+     *
+     * @return total de reservaciones en dichos estados
+     */
+    public CanceladoCompletado getCancelledCompleted() {
+        return reservationRepo.getCancelledCompleted();
+    }
+
+    /**
+     * Método para obtener el listado de usuarios con la cantidad reservas
+     * completas
+     *
+     * @return lista de usuarios con la cantidad reservas completas
+     */
+    public List<TopCliente> getTopClient() {
+        return reservationRepo.getTopClient();
     }
 
     /**

@@ -11,9 +11,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Clase Controller ControladorAdministrativos
  *
- * @version 1.0
+ * @version 1.1
  * @author Jhoan Villa G26 C3
  */
 @RestController
@@ -68,5 +70,29 @@ public class ControladorAdministrativos {
     @ResponseStatus(HttpStatus.CREATED)
     public Administrativo save(@RequestBody Administrativo admin) {
         return admin_service.save(admin);
+    }
+
+    /**
+     * Método para modificar un administador
+     *
+     * @param admin datos del administador a modificar en formato JSON
+     * @return administador en formato JSON
+     */
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Administrativo update(@RequestBody Administrativo admin) {
+        return admin_service.update(admin);
+    }
+
+    /**
+     * Método para eliminar un administador
+     *
+     * @param id identificador del administador a eliminar
+     * @return booleano de confirmación
+     */
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id) {
+        return admin_service.delete(id);
     }
 }

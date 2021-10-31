@@ -1,21 +1,21 @@
-$(document).ready(function(){
-  $.ajax({
-    url: "/api/Client/all",
-    type: 'GET',
-    dataType: 'json',
-      success: function(respuesta){
-        mostrarInformacion(respuesta);
-      },
-      error: function (xhr, status) {
-        alert('Se ha presentado un problema al consultar la información');
-      }
-  });
+$(document).ready(function () {
+    $.ajax({
+        url: "/api/Client/all",
+        type: 'GET',
+        dataType: 'json',
+        success: function (respuesta) {
+            mostrarInformacion(respuesta);
+        },
+        error: function (xhr, status) {
+            mostrarMensaje('Se ha presentado un problema al consultar la información', 'Error');
+        }
+    });
 });
 
-function mostrarInformacion(items){
-  var tabla = '';
-  for (var i=0; i < items.length; i++) {
-    tabla += `<tr>
+function mostrarInformacion(items) {
+    var tabla = '';
+    for (var i = 0; i < items.length; i++) {
+        tabla += `<tr>
              <td>${items[i].idClient}</td>
              <td>${items[i].name}</td>
              <td>${items[i].email}</td>
@@ -34,6 +34,6 @@ function mostrarInformacion(items){
              </a>            
              </td>
              </tr>`;
-  }
-  $("#client").append(tabla);
+    }
+    $("#client").append(tabla);
 }

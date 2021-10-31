@@ -1,22 +1,22 @@
-$(document).ready(function(){
-  $.ajax({
-    url: "/api/Ortopedic/all",
-    type: 'GET',
-    dataType: 'json',
-      success: function(respuesta){
-        console.log(respuesta);
-        mostrarInformacion(respuesta);
-      },
-      error: function (xhr, status) {
-        alert('Se ha presentado un problema al consultar la información');
-      }
-  });
+$(document).ready(function () {
+    $.ajax({
+        url: "/api/Ortopedic/all",
+        type: 'GET',
+        dataType: 'json',
+        success: function (respuesta) {
+            console.log(respuesta);
+            mostrarInformacion(respuesta);
+        },
+        error: function (xhr, status) {
+            mostrarMensaje('Se ha presentado un problema al consultar la información', 'Error');
+        }
+    });
 });
 
-function mostrarInformacion(items){
-  var tabla = '';
-  for (var i=0; i < items.length; i++) {
-    tabla += `<tr>
+function mostrarInformacion(items) {
+    var tabla = '';
+    for (var i = 0; i < items.length; i++) {
+        tabla += `<tr>
              <td>${items[i].name}</td>
              <td>${items[i].description}</td>
              <td>${items[i].brand}</td>
@@ -36,6 +36,6 @@ function mostrarInformacion(items){
              </a>            
              </td>
              </tr>`;
-  }
-  $("#orthesis").append(tabla);
+    }
+    $("#orthesis").append(tabla);
 }

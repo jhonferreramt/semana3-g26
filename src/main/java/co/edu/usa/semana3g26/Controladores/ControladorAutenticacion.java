@@ -5,7 +5,7 @@
  */
 package co.edu.usa.semana3g26.Controladores;
 
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Clase Controller ControladorAutenticacion
  *
- * @version 1.0
+ * @version 1.1
  * @author Jhoan Villa G26 C3
  */
 @RestController
@@ -30,6 +30,10 @@ public class ControladorAutenticacion {
     @GetMapping("/user")
     public Map<String, Object> user(
             @AuthenticationPrincipal OAuth2User auth_data) {
-        return Collections.singletonMap("name", auth_data.getAttribute("name"));
-    }    
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", auth_data.getAttribute("name"));
+        map.put("avatar_url", auth_data.getAttribute("avatar_url"));
+        return map;
+    }
 }

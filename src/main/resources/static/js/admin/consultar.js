@@ -1,21 +1,21 @@
-$(document).ready(function(){
-  $.ajax({
-    url: "/api/Admin/all",
-    type: 'GET',
-    dataType: 'json',
-      success: function(respuesta){
-        mostrarInformacion(respuesta);
-      },
-      error: function (xhr, status) {
-        alert('Se ha presentado un problema al consultar la información');
-      }
-  });
+$(document).ready(function () {
+    $.ajax({
+        url: "/api/Admin/all",
+        type: 'GET',
+        dataType: 'json',
+        success: function (respuesta) {
+            mostrarInformacion(respuesta);
+        },
+        error: function (xhr, status) {
+            mostrarMensaje('Se ha presentado un problema al consultar la información', 'Error');
+        }
+    });
 });
 
-function mostrarInformacion(items){
-  var tabla = '';
-  for (var i=0; i < items.length; i++) {
-    tabla += `<tr>
+function mostrarInformacion(items) {
+    var tabla = '';
+    for (var i = 0; i < items.length; i++) {
+        tabla += `<tr>
              <td>${items[i].idAdmin}</td>
              <td>${items[i].name}</td>
              <td>${items[i].email}</td>
@@ -33,6 +33,6 @@ function mostrarInformacion(items){
              </a>            
              </td>
              </tr>`;
-  }
-  $("#admin").append(tabla);
+    }
+    $("#admin").append(tabla);
 }

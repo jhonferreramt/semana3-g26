@@ -19,10 +19,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * version 1.0 
- * Claase modelo Ortesis
- * @author Jhon Ferney Herrera 
- * Grupo G-26
+ * version 1.0 Claase modelo Ortesis
+ *
+ * @author Jhon Ferney Herrera Grupo G-26
  */
 @Entity
 @Table(name = "ortopedics")
@@ -38,31 +37,36 @@ public class Ortesis implements Serializable {
      * Variable identificador Ortesis
      */
     private Integer id;
+
     /**
      * Variable Nombre de la Ortesis
      */
     private String name;
+
     /**
      * Variable Marca de la Ortesis
      */
     private String brand;
+
     /**
      * Variable Año de la Ortesis
      */
     private Integer year;
+
     /**
      * Variable Descripcion de la Ortesis
      */
     private String description;
+
     /**
      * Objeto messages que representa lista de mensajes y sus respectivas
      * relaciones con las tablas ortopedics para creacion de JSON
      */
-
     @ManyToOne
-    @JoinColumn(name = "categoryId")
+    @JoinColumn(name = "categoryId", nullable = true)
     @JsonIgnoreProperties("ortopedics")
     private Categoria category;
+
     /**
      * Objeto messages que representa lista de mensajes y sus respectivas
      * relaciones con las tablas ortopedic y client para creacion de JSON
@@ -70,6 +74,7 @@ public class Ortesis implements Serializable {
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "ortopedic")
     @JsonIgnoreProperties({"ortopedic", "client"})
     private List<Mensajes> messages;
+
     /**
      * Objeto reservations que representa lista de Reservaciones y sus
      * respectivas relaciones con las tablas ortopedic y client para creacion de

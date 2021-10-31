@@ -1,48 +1,48 @@
 $(document).ready(function () {
-  consultarOrthesis();
-  consultarClient();
+    consultarOrthesis();
+    consultarClient();
 });
 
-function consultarOrthesis(){
-  $.ajax({
-    url: "/api/Ortopedic/all",
-    type: 'GET',
-    dataType: 'json',
-      success: function(respuesta){
-        mostrarListado(respuesta);
-      },
-      error: function (xhr, status) {
-        alert('Se ha presentado un problema al consultar las categorias');
-      }
-  });
+function consultarOrthesis() {
+    $.ajax({
+        url: "/api/Ortopedic/all",
+        type: 'GET',
+        dataType: 'json',
+        success: function (respuesta) {
+            mostrarListado(respuesta);
+        },
+        error: function (xhr, status) {
+            mostrarMensaje('Se ha presentado un problema al consultar las órtesis', 'Error');
+        }
+    });
 }
 
-function mostrarListado(items){
-  var opciones = '';
-  for (var i=0; i < items.length; i++) {
-    opciones += `<option value="${items[i].id}">${items[i].name}</option>`;
-  }
-  $("#orthesis").append(opciones);
+function mostrarListado(items) {
+    var opciones = '';
+    for (var i = 0; i < items.length; i++) {
+        opciones += `<option value="${items[i].id}">${items[i].name}</option>`;
+    }
+    $("#orthesis").append(opciones);
 }
 
-function consultarClient(){
-  $.ajax({
-    url: "/api/Client/all",
-    type: 'GET',
-    dataType: 'json',
-      success: function(respuesta){
-        mostrarClient(respuesta);
-      },
-      error: function (xhr, status) {
-        alert('Se ha presentado un problema al consultar las categorias');
-      }
-  });
+function consultarClient() {
+    $.ajax({
+        url: "/api/Client/all",
+        type: 'GET',
+        dataType: 'json',
+        success: function (respuesta) {
+            mostrarClient(respuesta);
+        },
+        error: function (xhr, status) {
+            mostrarMensaje('Se ha presentado un problema al consultar los clientes');
+        }
+    });
 }
 
-function mostrarClient(items){
-  var opciones = '';
-  for (var i=0; i < items.length; i++) {
-    opciones += `<option value="${items[i].idClient}">${items[i].idClient} - ${items[i].name}</option>`;
-  }
-  $("#client").append(opciones);
+function mostrarClient(items) {
+    var opciones = '';
+    for (var i = 0; i < items.length; i++) {
+        opciones += `<option value="${items[i].idClient}">${items[i].idClient} - ${items[i].name}</option>`;
+    }
+    $("#client").append(opciones);
 }

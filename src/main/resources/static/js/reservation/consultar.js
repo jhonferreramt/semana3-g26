@@ -1,56 +1,56 @@
-$(document).ready(function(){
-  $.ajax({
-    url: "/api/Reservation/all",
-    type: 'GET',
-    dataType: 'json',
-      success: function(respuesta){
-        console.log(respuesta);
-        mostrarInformacion(respuesta);
-      },
-      error: function (xhr, status) {
-        alert('Se ha presentado un problema al consultar la información');
-      }
-  });
+$(document).ready(function () {
+    $.ajax({
+        url: "/api/Reservation/all",
+        type: 'GET',
+        dataType: 'json',
+        success: function (respuesta) {
+            console.log(respuesta);
+            mostrarInformacion(respuesta);
+        },
+        error: function (xhr, status) {
+            mostrarMensaje('Se ha presentado un problema al consultar la información', 'Error');
+        }
+    });
 });
 
-function mostrarInformacion(items){
-  var tabla = '';
-  for (var i=0; i < items.length; i++) {
-    var date1= new Date(items[i].startDate);
-    var date2= new Date(items[i].devolutionDate);
+function mostrarInformacion(items) {
+    var tabla = '';
+    for (var i = 0; i < items.length; i++) {
+        var date1 = new Date(items[i].startDate);
+        var date2 = new Date(items[i].devolutionDate);
 
-    var startDate = date1.getUTCFullYear() + "-";
-    if ((date1.getUTCMonth()+1) < 10) { 
-      startDate += "0";
-    }
-    startDate += (date1.getUTCMonth()+1) + "-";
-    if (date1.getUTCDate()+1 < 10) { 
-      startDate += "0";
-    }
-    startDate += date1.getUTCDate();
-        
-    var devolutionDate = date2.getUTCFullYear() + "-";
-    if ((date2.getUTCMonth()+1) < 10) { 
-      devolutionDate += "0";
-    }
-    devolutionDate += (date2.getUTCMonth()+1) + "-";
-    if (date2.getUTCDate()+1 < 10) { 
-      devolutionDate += "0";
-    }
-    devolutionDate += date2.getUTCDate();
-     
-    var status = "";
-    if (items[i].status === "created") {
-      status = "Creada";
-    } else if (items[i].status === "programmed") {
-      status = "Programada";
-    } else if (items[i].status === "cancelled") {
-      status = "Cancelada";
-    } else if (items[i].status === "completed") {
-      status = "Realizada";
-    }
+        var startDate = date1.getUTCFullYear() + "-";
+        if ((date1.getUTCMonth() + 1) < 10) {
+            startDate += "0";
+        }
+        startDate += (date1.getUTCMonth() + 1) + "-";
+        if (date1.getUTCDate() + 1 < 10) {
+            startDate += "0";
+        }
+        startDate += date1.getUTCDate();
 
-    tabla += `<tr>
+        var devolutionDate = date2.getUTCFullYear() + "-";
+        if ((date2.getUTCMonth() + 1) < 10) {
+            devolutionDate += "0";
+        }
+        devolutionDate += (date2.getUTCMonth() + 1) + "-";
+        if (date2.getUTCDate() + 1 < 10) {
+            devolutionDate += "0";
+        }
+        devolutionDate += date2.getUTCDate();
+
+        var status = "";
+        if (items[i].status === "created") {
+            status = "Creada";
+        } else if (items[i].status === "programmed") {
+            status = "Programada";
+        } else if (items[i].status === "cancelled") {
+            status = "Cancelada";
+        } else if (items[i].status === "completed") {
+            status = "Realizada";
+        }
+
+        tabla += `<tr>
              <td>${items[i].idReservation}</td>
              <td>${items[i].ortopedic.name}</td>
              <td>${startDate}</td>
@@ -59,8 +59,8 @@ function mostrarInformacion(items){
              <td>${items[i].client.idClient}</td>
              <td>${items[i].client.name}</td>
              <td>${items[i].client.email}</td>`;
-    if (JSON.stringify(items[i].score) !== "null") {
-      tabla += `<td>${items[i].score.score}</td>
+        if (JSON.stringify(items[i].score) !== "null") {
+            tabla += `<td>${items[i].score.score}</td>
                <td>
                <a onclick="eliminar(${items[i].idReservation},${items[i].score.idScore})" data-toggle="tooltip" data-placement="top" title="Eliminar reserva" class="btn btn-danger">
                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
@@ -79,8 +79,8 @@ function mostrarInformacion(items){
                </svg>
                </a>                            
                </td>`;
-    } else {
-      tabla += `<td></td>
+        } else {
+            tabla += `<td></td>
                <td>
                <a onclick="eliminar(${items[i].idReservation},null)" data-toggle="tooltip" data-placement="top" title="Eliminar órtesis" class="btn btn-danger">
                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
@@ -99,8 +99,8 @@ function mostrarInformacion(items){
                </svg>
                </a>                          
                </td>`;
+        }
+        tabla += `</tr>`;
     }
-    tabla += `</tr>`;
-  }
-  $("#reservation").append(tabla);
+    $("#reservation").append(tabla);
 }

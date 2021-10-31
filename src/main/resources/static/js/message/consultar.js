@@ -1,21 +1,21 @@
-$(document).ready(function(){
-  $.ajax({
-    url: "/api/Message/all",
-    type: 'GET',
-    dataType: 'json',
-      success: function(respuesta){
-        mostrarInformacion(respuesta);
-      },
-      error: function (xhr, status) {
-        alert('Se ha presentado un problema al consultar la información');
-      }
-  });
+$(document).ready(function () {
+    $.ajax({
+        url: "/api/Message/all",
+        type: 'GET',
+        dataType: 'json',
+        success: function (respuesta) {
+            mostrarInformacion(respuesta);
+        },
+        error: function (xhr, status) {
+            mostrarMensaje('Se ha presentado un problema al consultar la información', 'Error');
+        }
+    });
 });
 
-function mostrarInformacion(items){
-  var tabla = '';
-  for (var i=0; i < items.length; i++) {
-    tabla += `<tr>
+function mostrarInformacion(items) {
+    var tabla = '';
+    for (var i = 0; i < items.length; i++) {
+        tabla += `<tr>
              <td>${items[i].ortopedic.name}</td>
              <td>${items[i].client.name}</td>
              <td>${items[i].messageText}</td>
@@ -33,6 +33,6 @@ function mostrarInformacion(items){
              </a>            
              </td>
              </tr>`;
-  }
-  $("#message").append(tabla);
+    }
+    $("#message").append(tabla);
 }

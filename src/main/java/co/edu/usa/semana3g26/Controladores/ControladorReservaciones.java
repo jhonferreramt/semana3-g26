@@ -6,6 +6,8 @@
 package co.edu.usa.semana3g26.Controladores;
 
 import co.edu.usa.semana3g26.modelo.Reservaciones;
+import co.edu.usa.semana3g26.modelo.personalizado.CanceladoCompletado;
+import co.edu.usa.semana3g26.modelo.personalizado.TopCliente;
 import co.edu.usa.semana3g26.servicios.ServiciosReservaciones;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Clase Controller ControladorReservaciones
  *
- * @version 1.2
+ * @version 1.3
  * @author Jhoan Villa G26 C3
  */
 @RestController
@@ -73,6 +75,28 @@ public class ControladorReservaciones {
     @GetMapping("/{id}")
     public Reservaciones getById(@PathVariable("id") int id) {
         return reservation_service.getById(id);
+    }
+
+    /**
+     * Método para obtener el total de reservaciones en estado de canceladas y/o
+     * completas
+     *
+     * @return total de reservaciones en dichos estados
+     */
+    @GetMapping("/report-status")
+    public CanceladoCompletado getCancelledCompleted() {
+        return reservation_service.getCancelledCompleted();
+    }
+
+    /**
+     * Método para obtener el listado de usuarios con la cantidad reservas
+     * completas
+     *
+     * @return lista de usuarios con la cantidad reservas completas
+     */
+    @GetMapping("/report-clients")
+    public List<TopCliente> getTopClient() {
+        return reservation_service.getTopClient();
     }
 
     /**
