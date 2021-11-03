@@ -30,7 +30,7 @@ public class Administrativo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer idAdmin;
+    private Integer id;
 
     /**
      * Variable que representa el correo electrónico del administrador
@@ -56,17 +56,17 @@ public class Administrativo implements Serializable {
      * @return identificador asociado al administrador
      */
     public Integer getIdAdmin() {
-        return idAdmin;
+        return id;
     }
 
     /**
      * Método para ingresar y cambiar el valor del identificador de un
      * administrador
      *
-     * @param idAdmin identificador asociado al administrador
+     * @param id identificador asociado al administrador
      */
-    public void setIdAdmin(Integer idAdmin) {
-        this.idAdmin = idAdmin;
+    public void setIdAdmin(Integer id) {
+        this.id = id;
     }
 
     /**

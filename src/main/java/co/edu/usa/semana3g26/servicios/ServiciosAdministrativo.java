@@ -56,4 +56,47 @@ public class ServiciosAdministrativo {
     public Administrativo save(Administrativo admin) {
         return admin_repository.save(admin);
     }
+    
+    /**
+     * Método para actualizar una reservación
+     *
+     * @param admin datos del admin actualizar
+     * @return reservación
+     */
+    public Administrativo update(Administrativo admin){
+        if(admin.getIdAdmin()!=null){
+            Optional<Administrativo> e= admin_repository.getById(admin.getIdAdmin());
+            if(e.isPresent()){
+                if(admin.getName()!=null){
+                    e.get().setName(admin.getName());
+                }
+                if(admin.getEmail()!=null){
+                    e.get().setEmail(admin.getEmail());
+                }
+                if(admin.getPassword()!=null){
+                    e.get().setPassword(admin.getPassword());
+                }
+                admin_repository.save(e.get());
+                return e.get();
+            }else{
+                return admin;
+            }
+        }else{
+            return admin;
+        }
+    }
+    
+     /**
+     * Método para eliminar una reservación
+     *
+     * @param id identificador de la reservación a eliminar
+     * @return booleano de confirmación
+     */
+    public boolean delete(int id) {
+        return admin_repository.getById(id).map(admin -> {
+            admin_repository.delete(admin);
+            return true;
+        }).orElse(false);
+    }
+
 }
